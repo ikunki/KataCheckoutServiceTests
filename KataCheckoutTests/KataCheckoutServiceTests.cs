@@ -23,16 +23,17 @@ namespace KataCheckoutTests
                 {"C", 40},
                 {"D", 55},
             };
-            return new Dictionary<string, decimal>(prices);
+            return prices;
         }
 
         private static Dictionary<string, IEnumerable<Discount>> MockedDiscounts()
         {
+            var costD2 = DiscountPriceD2();
             var discounts = new Dictionary<string, IEnumerable<Discount>> {
-                {"B", new List<Discount> {new Discount(3, 40)}},
-                {"D", new List<Discount> {new Discount(2, DiscountPriceD2())}},
+                {"B", new List<Discount> { new Discount(3, 40) }},
+                {"D", new List<Discount> { new Discount(2, costD2) }},
             };
-            return new Dictionary<string, IEnumerable<Discount>>(discounts);
+            return discounts;
         }
 
         private static decimal DiscountPriceD2()
