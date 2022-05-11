@@ -73,5 +73,90 @@ namespace KataCheckoutTests
         }
 
         #endregion
+        #region A items
+
+        [Fact]
+        public void A_in_basket_total()
+        {
+            // Arrange
+            var prices = MockedPrices();
+            var discounts = MockedDiscounts();
+            var service = KataService(prices, discounts);
+            service.ScanItem("A", 1);
+            service.ScanItem("A", 2);
+            service.ScanItem("A", 3);
+
+            // Act
+            var total = service.TotalCost();
+
+            // Assert
+            Assert.Equal(60, total);
+        }
+
+        #endregion
+        #region B items
+
+        [Fact]
+        public void B_in_basket_total()
+        {
+            // Arrange
+            var prices = MockedPrices();
+            var discounts = MockedDiscounts();
+            var service = KataService(prices, discounts);
+            service.ScanItem("B", 1);
+            service.ScanItem("B", 2);
+            service.ScanItem("B", 1);
+            service.ScanItem("B", 3);
+
+            // Act
+            var total = service.TotalCost();
+
+            // Assert
+            Assert.Equal(95, total);
+        }
+
+        #endregion
+        #region C items
+
+        [Fact]
+        public void C_in_basket_total()
+        {
+            // Arrange
+            var prices = MockedPrices();
+            var discounts = MockedDiscounts();
+            var service = KataService(prices, discounts);
+            service.ScanItem("C", 1);
+            service.ScanItem("C", 2);
+            service.ScanItem("C", 3);
+
+            // Act
+            var total = service.TotalCost();
+
+            // Assert
+            Assert.Equal(240, total);
+        }
+
+        #endregion
+        #region D items
+
+        [Fact]
+        public void D_in_basket_total()
+        {
+            // Arrange
+            var prices = MockedPrices();
+            var discounts = MockedDiscounts();
+            var service = KataService(prices, discounts);
+            service.ScanItem("D", 1);
+            service.ScanItem("D", 1);
+            service.ScanItem("D", 3);
+
+            // Act
+            var total = service.TotalCost();
+
+            // Assert
+            Assert.Equal(220.0m, total);
+        }
+
+        #endregion
     }
 }
