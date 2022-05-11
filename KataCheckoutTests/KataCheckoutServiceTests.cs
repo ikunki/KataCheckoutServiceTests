@@ -73,7 +73,7 @@ namespace KataCheckoutTests
         }
 
         #endregion
-        #region A items
+        #region A items in basket
 
         [Fact]
         public void A_in_basket_total()
@@ -94,7 +94,7 @@ namespace KataCheckoutTests
         }
 
         #endregion
-        #region B items
+        #region B items in basket
 
         [Fact]
         public void B_in_basket_total()
@@ -116,7 +116,7 @@ namespace KataCheckoutTests
         }
 
         #endregion
-        #region C items
+        #region C items in basket
 
         [Fact]
         public void C_in_basket_total()
@@ -137,7 +137,7 @@ namespace KataCheckoutTests
         }
 
         #endregion
-        #region D items
+        #region D items in basket
 
         [Fact]
         public void D_in_basket_total()
@@ -155,6 +155,28 @@ namespace KataCheckoutTests
 
             // Assert
             Assert.Equal(220.0m, total);
+        }
+
+        #endregion
+        #region A, B, C & D items in basket
+
+        [Fact]
+        public void ABCD_in_basket_total()
+        {
+            // Arrange
+            var prices = MockedPrices();
+            var discounts = MockedDiscounts();
+            var service = KataService(prices, discounts);
+            service.ScanItem("A", 1);
+            service.ScanItem("B", 3);
+            service.ScanItem("C", 1);
+            service.ScanItem("D", 2);
+
+            // Act
+            var total = service.TotalCost();
+
+            // Assert
+            Assert.Equal(172.5m, total);
         }
 
         #endregion
